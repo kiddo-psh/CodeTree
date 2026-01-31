@@ -11,13 +11,17 @@ public class Main {
         }
         Arrays.sort(words);
         for (int i=0; i<n; i++) {
+            boolean match = true;
             for (int j=0; j<t.length(); j++) {
                 if (words[i].charAt(j)!=t.charAt(j)) {
-                    continue;
+                    match = false;
+                    break;
                 }
             }
-            System.out.println(words[i+k]);
-            return;
+            if (match) {
+                System.out.println(words[i+k]);
+                return;
+            }
         }
     }
 }
