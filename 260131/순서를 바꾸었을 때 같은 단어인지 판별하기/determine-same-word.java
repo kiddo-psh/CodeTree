@@ -8,16 +8,17 @@ public class Main {
             System.out.println("No");
             return;
         }
-        char[] str1 = word1.toCharArray();
-        char[] str2 = word2.toCharArray();
-        Arrays.sort(str1);
-        Arrays.sort(str2);
-        for (int i=0; i<str1.length; i++) {
-            if (str1[i] != str2[i]) {
-                System.out.println("No");
-                return;
-            }
-        }
-        System.out.println("Yes");
+        char[] c1 = word1.toCharArray();
+        char[] c2 = word2.toCharArray();
+
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        
+        String str1 = new String(c1);
+        String str2 = new String(c2);
+
+        if (str1.equals(str2)) {
+            System.out.println("Yes");
+        } else System.out.println("No");
     }
 }
