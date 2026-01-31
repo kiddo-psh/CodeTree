@@ -7,6 +7,7 @@ public class Main {
         int C = sc.nextInt();
         int st = 11*24*60 + 11*60 + 11;
         int et = A*24*60 + B*60 + C;
-        System.out.println(et - st);
+        int res = et - st;
+        System.out.println(res>=0 ? res : -1);
     }
 }
