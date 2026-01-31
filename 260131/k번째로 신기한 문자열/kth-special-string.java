@@ -13,13 +13,13 @@ public class Main {
         for (int i=0; i<n; i++) {
             boolean match = true;
             for (int j=0; j<t.length(); j++) {
-                if (words[i].charAt(j)!=t.charAt(j)) {
+                if (words[i].charAt(j) != t.charAt(j)) {
                     match = false;
                     break;
                 }
             }
             if (match) {
-                System.out.println(words[i+k]);
+                System.out.println(words[i+k-1]);
                 return;
             }
         }
