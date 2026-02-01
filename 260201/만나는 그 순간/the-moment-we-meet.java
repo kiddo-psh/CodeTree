@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
-    static int[] a = new int[1001];
-    static int[] b = new int[1001];
+    static int[] a = new int[1_000_001];
+    static int[] b = new int[1_000_001];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class Main {
         int ap = 0;
         int bp = 0;
         int ans = -1;
-        for (int i=0; i<1000; i++) {
+        for (int i=0; i<1_000_001; i++) {
             if (a[i]==0 && b[i]==0) break;
             if (a[i] == 1) ap++;
             else if (a[i] == -1) ap--;
