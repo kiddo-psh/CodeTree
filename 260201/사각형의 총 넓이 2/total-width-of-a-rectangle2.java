@@ -12,8 +12,8 @@ public class Main {
             x2 = sc.nextInt();
             y2 = sc.nextInt();
 
-            for (int y = y1; y < y2; y++) {
-                for (int x = x1; x < x2; x++) {
+            for (int y = y1+100; y < y2+100; y++) {
+                for (int x = x1+100; x < x2+100; x++) {
                     map[y][x] = 1;
                 }
             }
