@@ -35,6 +35,8 @@ public class Main {
                 }
             }
         }
-        System.out.println((maxY-minY+1)*(maxX-minX+1));
+        if (maxX != -1 && minX != 2002 && maxY != -1 && minY != 2002)
+            System.out.println((maxY-minY+1)*(maxX-minX+1));
+        else System.out.println(0);
     }
 }
