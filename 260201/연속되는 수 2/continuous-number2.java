@@ -8,10 +8,10 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        int result = 0;
+        int result = 1;
         int cnt = 0;
         for (int i=0; i<n; i++) {
-            if( i!=0 && arr[i]!=arr[i-1]) {
+            if( i!=0 && arr[i]!=arr[i-1] || i==n-1) {
                 result = Math.max(result, cnt);
                 cnt = 1;
             } else {
@@ -19,6 +19,5 @@ public class Main {
             }
         }
         System.out.println(result);
-        // Please write your code here.
     }
 }
