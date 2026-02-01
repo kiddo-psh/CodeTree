@@ -18,6 +18,7 @@ public class Main {
                 cnt++;
             }
         }
+        result = Math.max(result, cnt);
         System.out.println(result);
     }
 }
