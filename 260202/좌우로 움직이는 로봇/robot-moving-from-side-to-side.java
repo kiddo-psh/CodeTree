@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +23,9 @@ public class Main {
                 }
             }
         }
+        Arrays.fill(nMove, cur, 1_000_001, p);
         
-        cur = 0;
+        int bcur = 0;
         p = 0;
         for (int i = 0; i < m; i++) {
             int t = sc.nextInt();
@@ -32,16 +33,18 @@ public class Main {
             // Please write your code here.
             while(t-- > 0) {
                 if (d=='R') {
-                    mMove[cur++] = ++p;
+                    mMove[bcur++] = ++p;
                 } else {
-                    mMove[cur++] = --p;
+                    mMove[bcur++] = --p;
                 }
             }
         }
+        Arrays.fill(mMove, bcur, 1_000_001, p);
 
         // Please write your code here.
         int ans = 0;
-        for (int i=1; i<=1_000_000; i++) {
+        int idx = (cur > bcur) ? cur : bcur;
+        for (int i=1; i<=idx; i++) {
             if (nMove[i-1] != mMove[i-1] && nMove[i] == mMove[i]) {
                 ans++;
             }
