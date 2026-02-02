@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Main {
     static int[] result = new int[2];
     static int[][] arr;
-    static int[] dr = {-1, 0, -1};
-    static int[] dc = {0, 1, 1};
+    static int[] dr = {-1, 0, -1, -1};
+    static int[] dc = {0,  1,  1, -1};
     static boolean isWin(int r, int c, int n) {
         boolean flag = true;
-        for (int i=0; i<3; i++) {
+        for (int i=0; i<4; i++) {
             flag = true;
             for (int j=1; j<=4; j++) {
                 int nr = r + j*dr[i];
