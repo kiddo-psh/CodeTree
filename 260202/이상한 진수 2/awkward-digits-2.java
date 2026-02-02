@@ -10,6 +10,10 @@ public class Main {
         StringBuilder ans = new StringBuilder().append('1');
         boolean flag = false;
         for (int i=1; i<a.length(); i++) {
+            if (i==a.length()-1 && a.charAt(i)=='1' && flag == false) {
+                ans.append('0');
+                break;
+            }
             if (a.charAt(i)=='0' && flag == false) {
                 flag = true;
                 ans.append('1');
