@@ -5,7 +5,7 @@ public class Main {
     static int R, C;
     static void dfs(int r, int c, int jump) {
         if (jump == 2) {
-            if(grid[r][c] != grid[R][C])
+            if(grid[r][c] != grid[R-1][C-1])
                 result++;
             return;
         }
