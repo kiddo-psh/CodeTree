@@ -10,7 +10,7 @@ public class Main {
         }
 
         for (int i=r+1; i<R-2+jump; i++) {
-            for (int j=c+1; j<C-2+jump; ++) {
+            for (int j=c+1; j<C-2+jump; j++) {
                 if (grid[r][c] != grid[i][j]) {
                     dfs(i,j,jump+1);
                 }
