@@ -33,7 +33,7 @@ public class Main {
         Arrays.sort(B);
 
         int answer = 0;
-        for (int i = 0; i < N-2; i++) {
+        for (int i = 0; i < N-M; i++) {
             if (isBeautiful(i)) answer++;
         }
 
