@@ -28,12 +28,16 @@ public class Main {
 
         Arrays.sort(lines);
 
-        for (int i=n-2; i>=0; i--) {
+        for (int i=n-1; i>=0; i--) {
             countG = 0; countH = 0;
             for (int j=0; j<=i; j++) {
                 if (lines[j].c=='G') countG++;
                 else if (lines[j].c=='H')countH++;
             }
+            if (countH==countG || countH==0 || countG==0) {
+                    System.out.println(lines[i].p - lines[0].p);
+                    return;
+                }
             for (int j=i+1; j<n; j++) {
                 if(lines[j].c == 'G') countG++;
                 else if (lines[j].c=='H')countH++;
@@ -42,8 +46,6 @@ public class Main {
                 else if (lines[j-i-1].c=='H')countH--;
 
                 if (countH==countG || countH==0 || countG==0) {
-                    System.out.println(countG + ", " +countH);
-                    System.out.println(j + ", " + (j-i));
                     System.out.println(lines[j].p - lines[j-i].p);
                     return;
                 }
