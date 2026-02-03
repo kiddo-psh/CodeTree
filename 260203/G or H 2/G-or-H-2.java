@@ -28,29 +28,18 @@ public class Main {
 
         Arrays.sort(lines);
 
-        for (int i=n-1; i>=0; i--) {
-            countG = 0; countH = 0;
-            for (int j=0; j<=i; j++) {
-                if (lines[j].c=='G') countG++;
-                else if (lines[j].c=='H')countH++;
-            }
-            if (countH==countG || countH==0 || countG==0) {
-                    System.out.println(lines[i].p - lines[0].p);
-                    return;
-                }
-            for (int j=i+1; j<n; j++) {
-                if(lines[j].c == 'G') countG++;
-                else if (lines[j].c=='H')countH++;
-
-                if(lines[j-i-1].c == 'G') countG--;
-                else if (lines[j-i-1].c=='H')countH--;
-
-                if (countH==countG || countH==0 || countG==0) {
-                    System.out.println(lines[j].p - lines[j-i].p);
+        for (int i=n-1; i>=0; i--) { // 부분 크기
+            for (int j=0; j<n-i; j++) { // 슬라이딩 시작점
+                countH = 0; countG = 0;
+                for (int k=j; k<=j+i; k++) { // 윈도우 계산
+                    if (lines[k].c=='G') countG++;
+                    else if (lines[k].c=='H') countH++;
+                } 
+                if (countG==countH || countG==0 || countH==0) {
+                    System.out.println(lines[j+i].p - lines[j].p);
                     return;
                 }
             }
         }
-        System.out.println(0);
     }
 }
