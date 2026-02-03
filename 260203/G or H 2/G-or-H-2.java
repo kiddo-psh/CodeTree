@@ -27,7 +27,7 @@ public class Main {
         }
 
         Arrays.sort(lines);
-
+        int ans = 0;
         for (int i=n-1; i>=0; i--) { // 부분 크기
             for (int j=0; j<n-i; j++) { // 슬라이딩 시작점
                 countH = 0; countG = 0;
@@ -36,10 +36,10 @@ public class Main {
                     else if (lines[k].c=='H') countH++;
                 } 
                 if (countG==countH || countG==0 || countH==0) {
-                    System.out.println(lines[j+i].p - lines[j].p);
-                    return;
+                    ans = Math.max(ans, lines[j+i].p - lines[j].p);
                 }
             }
         }
+        System.out.println(ans);
     }
 }
