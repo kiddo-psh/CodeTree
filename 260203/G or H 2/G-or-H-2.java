@@ -42,6 +42,8 @@ public class Main {
                 else if (lines[j-i-1].c=='H')countH--;
 
                 if (countH==countG || countH==0 || countG==0) {
+                    System.out.println(countG + ", " +countH);
+                    System.out.println(j + ", " + (j-i));
                     System.out.println(lines[j].p - lines[j-i].p);
                     return;
                 }
