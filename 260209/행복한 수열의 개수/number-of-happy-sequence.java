@@ -10,10 +10,6 @@ public class Main {
             int num = grid[i][0];
             int count = 1;
             for (int j=1; j<n; j++) {
-                if (count == m) {
-                    result++;
-                    break;
-                }
                 if (num != grid[i][j]) {
                     num = grid[i][j];
                     count = 1;
@@ -32,10 +28,6 @@ public class Main {
             int num = grid[0][i];
             int count = 1;
             for (int j=1; j<n; j++) {
-                if (count == m) {
-                    result++;
-                    break;
-                }
                 if (num != grid[j][i]) {
                     num = grid[j][i];
                     count = 1;
@@ -59,6 +51,11 @@ public class Main {
             for (int j = 0; j < n; j++)
                 grid[i][j] = sc.nextInt();
         
+        if(m==1) {
+            System.out.println(2*n);
+            return;
+        }
+
         findRow();
         findCol();
 
