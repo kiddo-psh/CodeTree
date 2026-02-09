@@ -11,9 +11,9 @@ public class Main {
             }
         }
 
-        int result = calc(0,0);
-        for (int i=0; i<n-3; i++) {
-            for (int j=0; j<n-3; j++) {
+        int result = 0;
+        for (int i=0; i<=n-3; i++) {
+            for (int j=0; j<=n-3; j++) {
                 int sum = calc(i, j);
                 result = Math.max(sum, result);
             }
