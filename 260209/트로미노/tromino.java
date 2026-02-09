@@ -13,7 +13,7 @@ public class Main {
             }
         }
         for (int i=0; i<=n-2; i++) {
-            for (int j=0; j<=n-2; j++) {
+            for (int j=0; j<=m-2; j++) {
                 int sum = 0;
                 for (int k=i; k<i+2; k++) {
                     for (int l=j; l<j+2; l++) {
@@ -27,7 +27,7 @@ public class Main {
             }
         }
         for (int i=0; i<n; i++) {
-            for (int j=0; j<=n-3; j++) {
+            for (int j=0; j<=m-3; j++) {
                 int sum = 0;
                 for (int k=j; k<j+3; k++) {
                     sum += grid[i][k];
@@ -35,7 +35,7 @@ public class Main {
                 result = Math.max(result, sum);
             }
         }
-        for (int i=0; i<n; i++) {
+        for (int i=0; i<m; i++) {
             for (int j=0; j<=n-3; j++) {
                 int sum = 0;
                 for (int k=j; k<j+3; k++) {
@@ -45,6 +45,6 @@ public class Main {
             }
         }
 
-        System.out.println(result);
+        System.out.println(result)
     }
 }
