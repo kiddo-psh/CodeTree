@@ -15,9 +15,9 @@ public class Main {
         int result = -1;
 
         for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
+            for (int j=0; j<m; j++) {
                 for (int k=i; k<n; k++) {
-                    for (int l=j; l<n; l++) {
+                    for (int l=j; l<m; l++) {
                         result = Math.max(result, check(i, j, k, l));
                     }
                 }
