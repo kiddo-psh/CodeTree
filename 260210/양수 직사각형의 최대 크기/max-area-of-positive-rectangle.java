@@ -12,7 +12,7 @@ public class Main {
                 grid[i][j] = sc.nextInt();
         // 직사각형 만들기 = 두 점 찍기
         
-        int result = 0;
+        int result = -1;
 
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
