@@ -32,7 +32,7 @@ public class Main {
         int count = 0;
         for (int r=r1; r<=r2; r++) {
             for (int c=c1; c<=c2; c++) {
-                if (grid[r][c]<0) return -1;
+                if (grid[r][c]<=0) return -1;
                 count++;
             }
         }
