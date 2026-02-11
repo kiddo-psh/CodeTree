@@ -15,7 +15,7 @@ public class Main {
         int result = 0;
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
-                for (int k=0; k<n; k++) {
+                for (int k=0; k<=n; k++) {
                     int gold = digging(i, j, k); // n 크기로 채굴
                     result = Math.max(gold, result);
                 }
@@ -35,7 +35,6 @@ public class Main {
                 }
             }
         }
-        
         if (count*m - cost < 0) return -1;
         return count;
     }
