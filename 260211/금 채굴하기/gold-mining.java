@@ -26,13 +26,11 @@ public class Main {
     }
 
     static int digging(int r, int c, int k) {
-        if (r+k>=n || r-k<0 || c-k<0 || c+k>=n) return -1;
         int count = 0;
-        int cost = 0;
+        int cost = k*k + (k+1)*(k+1);
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 if (Math.abs(i-r)+Math.abs(j-c) <= k) {
-                    cost++;
                     if (grid[i][j] == 1) count++;
                 }
             }
