@@ -11,8 +11,9 @@ public class Main {
                 grid[i][j] = sc.nextInt();
             }
         }
+        int target=0;
         boolean flag;
-        for (int row=n-1; row>=0; row--) {
+        for (int row=0; row<n; row++) {
             flag = true;
             for (int col=k; col<k+m; col++) {
                 if (grid[row][col]!=0) {
@@ -20,10 +21,10 @@ public class Main {
                     break;
                 }
             }
-            if(flag) {
+            if(!flag) {
                 for (int col=k; col<k+m; col++) {
-                    grid[row][col] = 1;
-                }   
+                    grid[row-1][col] = 1;
+                }
                 break;
             }
         }
