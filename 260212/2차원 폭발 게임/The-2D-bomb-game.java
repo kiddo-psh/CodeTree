@@ -40,14 +40,15 @@ public class Main {
                 }
                 if (grid[row][col] == prev) {
                     count++;
-                    if (count >= m) {
-                        for (int i=row; i<=row+count-1; i++) {
-                            grid[i][col] = 0;
-                        }
-                    }
                 } else {
                     prev = grid[row][col];
                     count = 1;
+                }
+                
+                if (count >= m) {
+                    for (int i=row; i<=row+count-1; i++) {
+                        grid[i][col] = 0;
+                    }
                 }
             }
         }
