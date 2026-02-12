@@ -29,6 +29,7 @@ public class Main {
     }
 
     static void boom() {
+        boolean flag = false;
         for (int col=0; col<n; col++) {
             int prev = grid[n-1][col];
             int count = 0;
@@ -46,13 +47,16 @@ public class Main {
                 }
                 
                 if (count >= m) {
+                    flag = true;
                     for (int i=row; i<=row+count-1; i++) {
+                        if (grid[i][col]==0) break;
                         grid[i][col] = 0;
                     }
                 }
             }
         }
         gravity();
+        if (flag) boom();
     }
 
     static void rotate() {
