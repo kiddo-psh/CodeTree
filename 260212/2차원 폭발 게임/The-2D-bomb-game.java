@@ -22,10 +22,10 @@ public class Main {
         int result = 0;
         for (int g[] : grid) {
             for (int gg : g) {
-                result++
+                if(gg!=0)result++;
             }
         }
-            System.out.println(result);
+        System.out.println(result);
     }
 
     static void boom() {
