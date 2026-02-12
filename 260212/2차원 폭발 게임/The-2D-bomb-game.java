@@ -31,8 +31,8 @@ public class Main {
     static void boom() {
         for (int col=0; col<n; col++) {
             int prev = grid[n-1][col];
-            int count = 1;
-            for (int row=n-2; row>=0; row--) {
+            int count = 0;
+            for (int row=n-1; row>=0; row--) {
                 if (grid[row][col] == 0) {
                     prev = 0;
                     count = 0;
