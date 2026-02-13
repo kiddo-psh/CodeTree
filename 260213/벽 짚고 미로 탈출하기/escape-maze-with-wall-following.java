@@ -3,8 +3,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        int c = sc.nextInt()-1; // 시작 행
-        int r = sc.nextInt()-1; // 시작 열
+        int r = sc.nextInt()-1; // 시작 행
+        int c = sc.nextInt()-1; // 시작 열
         char[][] maze = new char[n][n];
         boolean[][][] visited = new boolean[n][n][4];
         for (int i = 0; i < n; i++) {
@@ -45,7 +45,14 @@ public class Main {
             r = nr;
             c = nc;
 
-            if (maze[r+dr[cw(dir)]][c+dc[cw(dir)]] != '#') { // 오른쪽에 벽 없음.
+            int rr = r + dr[cw(dir)];
+            int cc = c + dc[cw(dir)];
+            if (out(rr, cc)) {
+                time++;
+                System.out.print(time);
+                return;
+            }
+            else if (maze[rr][cc] != '#') { // 오른쪽에 벽 없음.
                 dir = cw(dir);
             }
         }
