@@ -6,7 +6,7 @@ public class Main {
         int c = sc.nextInt()-1; // 시작 행
         int r = sc.nextInt()-1; // 시작 열
         char[][] maze = new char[n][n];
-        int[][] visited = new int[n][n];
+        boolean[][][] visited = new boolean[n][n][4];
         for (int i = 0; i < n; i++) {
             String line = sc.next();
             for (int j = 0; j < n; j++) {
@@ -18,7 +18,7 @@ public class Main {
         int time = 0;
 
         while(true) {
-            visited [r][c]++;
+            visited [r][c][dir] = true;
 
             int nr = r + dr[dir];
             int nc = c + dc[dir];
@@ -29,7 +29,7 @@ public class Main {
                 return;
             }
 
-            if (visited [r][c] == 6) { // 방문했던 곳
+            if (visited[nr][nc][dir]) { // 방문했던 곳
                 System.out.print(-1);
                 return;
             }
