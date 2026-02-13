@@ -30,7 +30,7 @@ public class Main {
         }
         if(flag) {
             for (int col=k; col<k+m; col++) {
-                grid[0][col] = 1;
+                grid[n-1][col] = 1;
             }
         }
 
