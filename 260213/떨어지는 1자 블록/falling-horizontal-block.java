@@ -12,7 +12,7 @@ public class Main {
             }
         }
         int target=0;
-        boolean flag;
+        boolean flag = true;
         for (int row=0; row<n; row++) {
             flag = true;
             for (int col=k; col<k+m; col++) {
@@ -26,6 +26,11 @@ public class Main {
                     grid[row-1][col] = 1;
                 }
                 break;
+            }
+        }
+        if(flag) {
+            for (int col=k; col<k+m; col++) {
+                grid[0][col] = 1;
             }
         }
 
