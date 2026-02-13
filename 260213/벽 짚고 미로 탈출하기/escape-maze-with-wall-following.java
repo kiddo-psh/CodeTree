@@ -29,7 +29,7 @@ public class Main {
                 return;
             }
 
-            if (visited [r][c] == 4) { // 방문했던 곳
+            if (visited [r][c] == 6) { // 방문했던 곳
                 System.out.print(-1);
                 return;
             }
