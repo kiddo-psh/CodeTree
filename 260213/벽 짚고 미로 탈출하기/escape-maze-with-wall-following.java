@@ -18,6 +18,12 @@ public class Main {
         int time = 0;
 
         while(true) {
+
+            if (visited[r][c][dir]) { // 방문했던 곳
+                System.out.print(-1);
+                return;
+            }
+
             visited [r][c][dir] = true;
 
             int nr = r + dr[dir];
@@ -26,11 +32,6 @@ public class Main {
             if (out(nr, nc)) { // 탈출
                 time++;
                 System.out.print(time);
-                return;
-            }
-
-            if (visited[nr][nc][dir]) { // 방문했던 곳
-                System.out.print(-1);
                 return;
             }
 
