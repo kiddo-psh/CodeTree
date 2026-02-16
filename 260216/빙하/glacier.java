@@ -29,7 +29,7 @@ public class Main {
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
                 if (grid[i][j]==1) continue;
-                    if (surrounded(i, j)) continue; // 사방이 빙하
+                    if (i!=0&&j!=0&&i!=n-1&&j!=n-1&&surrounded(i, j)) continue; // 사방이 빙하
 
                     for (int d=0; d<4; d++) {
                         int nr = i + dr[d];
