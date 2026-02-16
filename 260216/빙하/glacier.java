@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 public class Main {
     static int n, m, cnt, ans;
     static int[][] grid;
@@ -23,22 +23,13 @@ public class Main {
     static boolean bfs() {
         int[][] temp = new int[n][m];
         for (int i=0; i<n; i++) temp[i] = grid[i].clone();
-        boolean flag = false;
+
         cnt = 0;
 
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
                 if (grid[i][j]==1) continue;
-                    flag = true;
-                    for (int d=0; d<4; d++) {
-                        int nr = i + dr[d];
-                        int nc = j + dc[d];
-
-                        if (!inRange(nr,nc)) continue;
-                        if (grid[nr][nc]==0) flag = false;
-                    }
-
-                    if (flag) continue; // 사방이 빙하
+                    if (surrounded(i, j)) continue; // 사방이 빙하
 
                     for (int d=0; d<4; d++) {
                         int nr = i + dr[d];
@@ -72,7 +63,37 @@ public class Main {
     static final int[] dr = {-1,1,0,0};
     static final int[] dc = {0,0,-1,1};
 
+    static Queue<int[]> q = new LinkedList<>();
+
     static boolean inRange (int r, int c) {
         return r>=0 && r<n && c>=0 && c<m;
+    }
+
+    static boolean surrounded (int r, int c) {
+        q.clear();
+        q.offer(new int[]{r, c});
+        
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int cr = cur[0];
+            int cc = cur[1];
+
+            for (int i=0; i<4; i++) {
+                int nr = cr + dr[i];
+                int nc = cc + dc[i];
+
+                if (!inRange(nr, nc)) continue;
+                if (grid[nr][nc]==1) continue;
+
+                if (nr==1 || nc==1 || nr==n-1 || nc==n-1) {
+                    return false;
+                }
+
+                q.offer(new int[] {nr, nc});
+
+            }
+        }
+
+        return true;
     }
 }
