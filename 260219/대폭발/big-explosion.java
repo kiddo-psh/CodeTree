@@ -23,8 +23,9 @@ public class Main {
                 for (int j=0; j<n; j++) {
                     if (map[i][j]==1) {
                         for (int d=0; d<4; d++) {
-                            int nr = i + t*dr[d];
-                            int nc = j + t*dc[d];
+                            int dist = 1 << (t - 1);
+                            int nr = i + dist*dr[d];
+                            int nc = j + dist*dc[d];
 
                             if (!inRange(nr, nc)) continue;
 
