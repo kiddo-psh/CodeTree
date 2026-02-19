@@ -27,7 +27,6 @@ public class Main {
                             int nc = j + t*dc[d];
 
                             if (!inRange(nr, nc)) continue;
-                            if (map[nr][nc]==1) continue;
 
                             temp[nr][nc] = 1;
                         }
