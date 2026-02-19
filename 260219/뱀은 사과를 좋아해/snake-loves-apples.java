@@ -59,11 +59,6 @@ public class Main {
                     return;
                 }
 
-                if (map[nr][nc] == 9) { // 몸이 꼬임
-                    System.out.print(time);
-                    return;
-                }
-
                 // 머리 움직이기
                 head.set(nr, nc, null);
                 map[nr][nc] = 9;
@@ -81,6 +76,11 @@ public class Main {
 
                 map[tail.r][tail.c] = 0;
                 if (tail.next != null) tail = tail.next;
+
+                if (map[nr][nc] == 9) { // 몸이 꼬임
+                    System.out.print(time);
+                    return;
+                }
 
             }
         }
