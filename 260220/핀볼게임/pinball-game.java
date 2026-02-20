@@ -25,14 +25,8 @@ public class Main {
         int count = 1;
 
         while (inRange(r, c)) {
-            r += dr[dir];
-            c += dc[dir];
-
             count++;
 
-            if (!inRange(r, c)) break;
-
-            if (grid[r][c] == 0) continue;
             if (grid[r][c] == 1) {
                 if (dir==0) dir=3;
                 else if (dir==1) dir=2;
@@ -44,6 +38,9 @@ public class Main {
                 else if (dir==2) dir=0;
                 else if (dir==3) dir=1;
             }
+
+            r += dr[dir];
+            c += dc[dir];
         }
 
         answer = Math.max(count, answer);
