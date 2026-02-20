@@ -16,7 +16,7 @@ public class Main {
             return;
         }
 
-        for (int i=1; i<=9; i++) {
+        for (int i=1; i<=4; i++) {
             dfs(depth+i);
         }
     }
