@@ -1,3 +1,6 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 public class Main {
     static int N, M;
@@ -31,19 +34,21 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
         while(T-- > 0) {
-            N = sc.nextInt();
-            M = sc.nextInt();
+        		StringTokenizer st = new StringTokenizer(br.readLine());
+            N = Integer.parseInt(st.nextToken());
+            M = Integer.parseInt(st.nextToken());
             
             count = new int[N][N];
             balls = new ArrayList<>();
             
             for (int i = 0; i < M; i++) {
-                int r = sc.nextInt()-1;
-                int c = sc.nextInt()-1;
-                char d = sc.next().charAt(0);
+            		st = new StringTokenizer(br.readLine());
+                int r = Integer.parseInt(st.nextToken());
+                int c = Integer.parseInt(st.nextToken());
+                char d = st.nextToken().charAt(0);
 
                 int dir = 0;
                 if (d=='U') dir=0;
