@@ -1,87 +1,118 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
+
 public class Main {
     static int N, M;
-    static List<Ball> balls;
-    static int[][] count;
-    
-    static final int[] dr = {-1,0,0,1}; // 상 좌우 하
-    static final int[] dc = {0,-1,1,0};
+    static ArrayList<Ball> balls;
+
+    static final int[] dr = {-1, 0, 0, 1}; // U L R D
+    static final int[] dc = {0, -1, 1, 0};
 
     static class Ball {
         int r, c, dir;
-        public Ball(int r, int c, int dir) {
-            this.r = r;
-            this.c = c;
-            this.dir = dir;
-        }
+        Ball(int r, int c, int dir) { this.r = r; this.c = c; this.dir = dir; }
 
-        public void move() {
+        void move() {
             int nr = r + dr[dir];
             int nc = c + dc[dir];
-            if (!inRange(nr, nc)) {
-                dir = 3-dir;
-                return;
+            if (nr < 0 || nr >= N || nc < 0 || nc >= N) {
+                dir = 3 - dir; // U<->D, L<->R
+                return; // 방향 바꾸는 데 1초 소요 -> 이번 초엔 위치 그대로
             }
             r = nr; c = nc;
         }
     }
 
-    static boolean inRange(int r, int c) {
-        return r>=0 && r<N && c>=0 && c<N;
-    }
+    public static void main(String[] args) throws Exception {
+        FastScanner fs = new FastScanner(System.in);
+        StringBuilder sb = new StringBuilder();
+        int T = fs.nextInt();
 
-    public static void main(String[] args) throws IOException {
-    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine());
-        while(T-- > 0) {
-        		StringTokenizer st = new StringTokenizer(br.readLine());
-            N = Integer.parseInt(st.nextToken());
-            M = Integer.parseInt(st.nextToken());
-            
-            count = new int[N][N];
-            balls = new ArrayList<>();
-            
+        while (T-- > 0) {
+            N = fs.nextInt();
+            M = fs.nextInt();
+            balls = new ArrayList<>(M);
+
             for (int i = 0; i < M; i++) {
-            		st = new StringTokenizer(br.readLine());
-                int r = Integer.parseInt(st.nextToken())-1;
-                int c = Integer.parseInt(st.nextToken())-1;
-                char d = st.nextToken().charAt(0);
-
-                int dir = 0;
-                if (d=='U') dir=0;
-                else if (d=='D') dir=3;
-                else if (d=='R') dir=2;
-                else if (d=='L') dir=1;
-
+                int r = fs.nextInt() - 1;
+                int c = fs.nextInt() - 1;
+                char d = fs.nextChar();
+                int dir = (d == 'U') ? 0 : (d == 'D') ? 3 : (d == 'R') ? 2 : 1;
                 balls.add(new Ball(r, c, dir));
-                count[r][c]++;
             }
 
-            int LIMIT = 2 * N;
+            int LIMIT = 2 * N; // (상한은 문제에 따라 조정 가능)
 
-            for (int t = 0; t < LIMIT; t++) {
+            int size = N * N;
+            int[] temp = new int[size];
+            int[] touched = new int[Math.min(size, M)];
+            int touchedCnt;
 
-                // 1) 전부 이동(또는 방향전환) + 도착지 카운트
-                for (Ball b : balls) {
-                    count[b.r][b.c]--;
+            for (int t = 0; t < LIMIT && balls.size() > 1; t++) {
+                touchedCnt = 0;
+
+                // 1) move + count
+                for (int i = 0; i < balls.size(); i++) {
+                    Ball b = balls.get(i);
                     b.move();
-                    count[b.r][b.c]++;
+                    int idx = b.r * N + b.c;
+                    if (temp[idx] == 0) touched[touchedCnt++] = idx;
+                    temp[idx]++;
                 }
 
-                // 2) 충돌 제거: 도착지에 1개인 구슬만 생존
-                List<Ball> next = new ArrayList<>();
-                for (Ball b : balls) {
-                    if (count[b.r][b.c] == 1) next.add(b);
-                    if (count[b.r][b.c] >= 2) count[b.r][b.c] = 0;
+                // 2) survivors
+                ArrayList<Ball> next = new ArrayList<>(balls.size());
+                for (int i = 0; i < balls.size(); i++) {
+                    Ball b = balls.get(i);
+                    int idx = b.r * N + b.c;
+                    if (temp[idx] == 1) next.add(b);
                 }
                 balls = next;
+
+                // 3) reset only touched cells
+                for (int i = 0; i < touchedCnt; i++) {
+                    temp[touched[i]] = 0;
+                }
             }
-            
-            System.out.println(balls.size());
+
+            sb.append(balls.size()).append('\n');
         }
-        br.close();
+
+        System.out.print(sb.toString());
+    }
+
+    // 빠른 입력(Scanner 교체)
+    static class FastScanner {
+        private final InputStream in;
+        private final byte[] buffer = new byte[1 << 16];
+        private int ptr = 0, len = 0;
+
+        FastScanner(InputStream is) { in = is; }
+
+        private int read() throws IOException {
+            if (ptr >= len) {
+                len = in.read(buffer);
+                ptr = 0;
+                if (len <= 0) return -1;
+            }
+            return buffer[ptr++];
+        }
+
+        int nextInt() throws IOException {
+            int c, sgn = 1, val = 0;
+            do c = read(); while (c <= ' '); // skip
+            if (c == '-') { sgn = -1; c = read(); }
+            while (c > ' ') {
+                val = val * 10 + (c - '0');
+                c = read();
+            }
+            return val * sgn;
+        }
+
+        char nextChar() throws IOException {
+            int c;
+            do c = read(); while (c <= ' ');
+            return (char) c;
+        }
     }
 }
