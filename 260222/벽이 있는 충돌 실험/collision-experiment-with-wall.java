@@ -5,7 +5,7 @@ public class Main {
     static List<Ball> balls;
     static int[][] count;
     
-    static final int[] dr = {1,0,0,-1}; // 상 좌우 하
+    static final int[] dr = {-1,0,0,1}; // 상 좌우 하
     static final int[] dc = {0,-1,1,0};
 
     static class Ball {
@@ -42,8 +42,8 @@ public class Main {
             balls = new ArrayList<>();
             
             for (int i = 0; i < M; i++) {
-                int c = sc.nextInt()-1;
                 int r = sc.nextInt()-1;
+                int c = sc.nextInt()-1;
                 char d = sc.next().charAt(0);
 
                 int dir = 0;
