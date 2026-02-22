@@ -5,7 +5,7 @@ public class Main {
     static List<Ball> balls;
     static int[][] count;
     
-    static final int[] dr = {-1,0,0,1}; // 상 좌우 하
+    static final int[] dr = {1,0,0,-1}; // 상 좌우 하
     static final int[] dc = {0,-1,1,0};
 
     static class Ball {
@@ -56,7 +56,8 @@ public class Main {
                 count[r][c]++;
             }
 
-            for (int i=0; i<4*N; i++) {
+            for (int i=0; i<2*N; i++) {
+                //모든 구슬 이동
                 for (int j=0; j<balls.size(); j++) {
                 		count[balls.get(j).r][balls.get(j).c]--;
                 		
@@ -65,16 +66,18 @@ public class Main {
                 		count[balls.get(j).r][balls.get(j).c]++;
                 }
                 
+                //충돌 체크
                 for (int j=0; j<N; j++) {
-                		for(int k=0; k<N; k++) {
-                			if (count[j][k]>=2) {
-                				for (int l=balls.size()-1; l>=0; l--) {
-                					if (balls.get(l).r==j && balls.get(l).c==k) {
-                						balls.remove(l);
-                					}
+                	for(int k=0; k<N; k++) {
+                		if (count[j][k]>=2) {
+                            count[j][k]=0;
+                			for (int l=balls.size()-1; l>=0; l--) {
+                				if (balls.get(l).r==j && balls.get(l).c==k) {
+                					balls.remove(l);
                 				}
                 			}
                 		}
+                	}
                 }
             }
             
