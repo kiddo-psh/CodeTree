@@ -55,21 +55,22 @@ public class Main {
                 count[r][c]++;
             }
 
-            int LIMIT = 2 * N; // 일단 기존 유지 (상한은 문제 조건에 따라 더 줄일 수도 있음)
+            int LIMIT = 2 * N;
 
             for (int t = 0; t < LIMIT; t++) {
-                int[][] temp = new int[N][N];
 
                 // 1) 전부 이동(또는 방향전환) + 도착지 카운트
                 for (Ball b : balls) {
+                    count[b.r][b.c]--;
                     b.move();
-                    temp[b.r][b.c]++;
+                    count[b.r][b.c]++;
                 }
 
                 // 2) 충돌 제거: 도착지에 1개인 구슬만 생존
-                List<Ball> next = new ArrayList<>(balls.size());
+                List<Ball> next = new ArrayList<>();
                 for (Ball b : balls) {
-                    if (temp[b.r][b.c] == 1) next.add(b);
+                    if (count[b.r][b.c] == 1) next.add(b);
+                    if (count[b.r][b.c] >= 2) count[b.r][b.c] = 0;
                 }
                 balls = next;
             }
