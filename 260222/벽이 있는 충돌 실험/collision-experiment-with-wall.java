@@ -41,8 +41,8 @@ public class Main {
             balls = new ArrayList<>();
             
             for (int i = 0; i < M; i++) {
-                int c = sc.nextInt()-1;
                 int r = sc.nextInt()-1;
+                int c = sc.nextInt()-1;
                 char d = sc.next().charAt(0);
 
                 int dir = 0;
