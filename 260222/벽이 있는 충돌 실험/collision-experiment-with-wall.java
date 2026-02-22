@@ -55,7 +55,7 @@ public class Main {
                 count[r][c]++;
             }
 
-            int LIMIT = 4 * N; // 일단 기존 유지 (상한은 문제 조건에 따라 더 줄일 수도 있음)
+            int LIMIT = 2 * N; // 일단 기존 유지 (상한은 문제 조건에 따라 더 줄일 수도 있음)
 
             for (int t = 0; t < LIMIT; t++) {
                 int[][] temp = new int[N][N];
