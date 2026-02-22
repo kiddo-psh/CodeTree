@@ -1,5 +1,5 @@
-
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 public class Main {
@@ -33,7 +33,7 @@ public class Main {
         return r>=0 && r<N && c>=0 && c<N;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
         while(T-- > 0) {
@@ -46,8 +46,8 @@ public class Main {
             
             for (int i = 0; i < M; i++) {
             		st = new StringTokenizer(br.readLine());
-                int r = Integer.parseInt(st.nextToken());
-                int c = Integer.parseInt(st.nextToken());
+                int r = Integer.parseInt(st.nextToken())-1;
+                int c = Integer.parseInt(st.nextToken())-1;
                 char d = st.nextToken().charAt(0);
 
                 int dir = 0;
@@ -82,6 +82,6 @@ public class Main {
             
             System.out.println(balls.size());
         }
-        sc.close();
+        br.close();
     }
 }
