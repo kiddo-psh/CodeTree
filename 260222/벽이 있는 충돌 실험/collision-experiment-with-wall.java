@@ -1,4 +1,3 @@
-
 import java.util.*;
 public class Main {
     static int N, M;
@@ -42,8 +41,8 @@ public class Main {
             balls = new ArrayList<>();
             
             for (int i = 0; i < M; i++) {
-                int r = sc.nextInt()-1;
                 int c = sc.nextInt()-1;
+                int r = sc.nextInt()-1;
                 char d = sc.next().charAt(0);
 
                 int dir = 0;
@@ -56,29 +55,23 @@ public class Main {
                 count[r][c]++;
             }
 
-            for (int i=0; i<2*N; i++) {
-                //모든 구슬 이동
-                for (int j=0; j<balls.size(); j++) {
-                		count[balls.get(j).r][balls.get(j).c]--;
-                		
-                		balls.get(j).move();
-                		
-                		count[balls.get(j).r][balls.get(j).c]++;
+            int LIMIT = 4 * N; // 일단 기존 유지 (상한은 문제 조건에 따라 더 줄일 수도 있음)
+
+            for (int t = 0; t < LIMIT; t++) {
+                int[][] temp = new int[N][N];
+
+                // 1) 전부 이동(또는 방향전환) + 도착지 카운트
+                for (Ball b : balls) {
+                    b.move();
+                    temp[b.r][b.c]++;
                 }
-                
-                //충돌 체크
-                for (int j=0; j<N; j++) {
-                	for(int k=0; k<N; k++) {
-                		if (count[j][k]>=2) {
-                            count[j][k]=0;
-                			for (int l=balls.size()-1; l>=0; l--) {
-                				if (balls.get(l).r==j && balls.get(l).c==k) {
-                					balls.remove(l);
-                				}
-                			}
-                		}
-                	}
+
+                // 2) 충돌 제거: 도착지에 1개인 구슬만 생존
+                List<Ball> next = new ArrayList<>(balls.size());
+                for (Ball b : balls) {
+                    if (temp[b.r][b.c] == 1) next.add(b);
                 }
+                balls = next;
             }
             
             System.out.println(balls.size());
