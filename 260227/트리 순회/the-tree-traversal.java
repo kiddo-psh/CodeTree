@@ -49,11 +49,11 @@ public class Main {
 
             if (adj[p-'A'] == null) adj[p-'A'] = new Node(p);
             if (l != '.') {
-                adj[l - 'A'] = new Node(l);
+                if (adj[l-'A'] == null) adj[l - 'A'] = new Node(l);
                 adj[p - 'A'].setLeft(adj[l - 'A']);
             }
             if (r != '.') {
-                adj[r - 'A'] = new Node(r);
+                if (adj[r-'A'] == null) adj[r - 'A'] = new Node(r);
                 adj[p - 'A'].setRight(adj[r - 'A']);
             }
         }
