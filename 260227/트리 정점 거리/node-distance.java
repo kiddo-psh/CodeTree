@@ -36,7 +36,7 @@ public class Main {
     }
 
     static void fillParent() {
-        for (int j=1; j<=N; j++) {
+        for (int j=1; j<LOG; j++) {
             for (int i=1; i<=N; i++) {
                 parent[i][j] = parent[parent[i][j-1]][j-1];
             }
@@ -102,6 +102,7 @@ public class Main {
         dist[ROOT] = 0;
         depth[ROOT] = 1;
         dfs(ROOT, 0);
+        fillParent();
 
         for (int i=0; i<M; i++) {
             st = new StringTokenizer(br.readLine());
