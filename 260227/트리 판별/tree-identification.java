@@ -1,5 +1,4 @@
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,7 +23,7 @@ public class Main {
 		for (int v : adj[u]) {
 			if (v == p) continue;
 			if (visited[v]) return true;
-			isCycle(v, u);
+			if (isCycle(v, u)) return true;
 		}
 		
 		return false;
@@ -54,7 +53,8 @@ public class Main {
 			nodes.add(u); nodes.add(v);
 		}
 		
-		if(isCycle(1, 0) || visitCount!=nodes.size()) {
+		int ROOT = nodes.iterator().next();
+		if(isCycle(ROOT, 0) || visitCount!=nodes.size()) {
 			System.out.println(0);
 			return;
 		}
