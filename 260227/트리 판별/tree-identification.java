@@ -62,6 +62,7 @@ public class Main {
 				ROOT = node;
 			}
 		}
+		if (ROOT == -1) {System.out.println(0); return;}
 		
 		if(isCycle(ROOT) || visitCount!=nodes.size()) {
 			System.out.println(0); return;
