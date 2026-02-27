@@ -23,9 +23,9 @@ public class Main {
 
         if (isPossible) {
             bt[node] = 1;
-            output.append(0).append("\n");
+            System.out.println(0);
         } else {
-            output.append(cause).append("\n");
+            System.out.println(cause);
         }
     }
 
@@ -40,7 +40,6 @@ public class Main {
             query(Integer.parseInt(br.readLine()));
         }
 
-        System.out.println(output);
         br.close();
     }
 }
