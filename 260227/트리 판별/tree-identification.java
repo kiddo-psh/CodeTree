@@ -12,18 +12,18 @@ import java.util.StringTokenizer;
 public class Main {
 	static int M;
 	static List<Integer>[] adj;
+	static int[] indegree;
 	static boolean visited[];
 	static int visitCount = 0;
 	
 	// 도달 못 하거나, 사이클 
-	static boolean isCycle(int u, int p) {
+	static boolean isCycle(int u) {
 		visited[u] = true;
 		visitCount++;
 		
 		for (int v : adj[u]) {
-			if (v == p) continue;
 			if (visited[v]) return true;
-			if (isCycle(v, u)) return true;
+			if (isCycle(v)) return true;
 		}
 		
 		return false;
@@ -37,6 +37,7 @@ public class Main {
 		M = Integer.parseInt(br.readLine());
 		final int N = 10_000;
 		adj = new ArrayList[N+1];
+		indegree = new int[N+1];
 		for(int i=0; i<=N; i++) adj[i] = new ArrayList<>();
 		visited = new boolean[N+1];
 		
@@ -48,15 +49,22 @@ public class Main {
 			int u = Integer.parseInt(st.nextToken());
 			int v = Integer.parseInt(st.nextToken());
 			
-			adj[u].add(v); adj[v].add(u);
+			adj[u].add(v);
+			indegree[v]++;
 			
 			nodes.add(u); nodes.add(v);
 		}
 		
-		int ROOT = nodes.iterator().next();
-		if(isCycle(ROOT, 0) || visitCount!=nodes.size()) {
-			System.out.println(0);
-			return;
+		int ROOT = -1;
+		for (int node : nodes) {
+			if (indegree[node] == 0) {
+				if (ROOT != -1) {System.out.println(0); return;}
+				ROOT = node;
+			}
+		}
+		
+		if(isCycle(ROOT) || visitCount!=nodes.size()) {
+			System.out.println(0); return;
 		}
 		
 		System.out.println(1);
