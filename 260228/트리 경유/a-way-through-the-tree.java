@@ -14,18 +14,18 @@ public class Main {
         int next = node;
         int cause = -1;
         while (next != 0) {
-            next /= 2;
             if (bt[next] == 1) {
                 isPossible = false;
                 cause = next;
             }
+            next /= 2;
         }
 
         if (isPossible) {
             bt[node] = 1;
-            System.out.println(0);
+            output.append(0).append("\n");
         } else {
-            System.out.println(cause);
+            output.append(cause).append("\n");
         }
     }
 
@@ -40,6 +40,7 @@ public class Main {
             query(Integer.parseInt(br.readLine()));
         }
 
+        System.out.println(output);
         br.close();
     }
 }
