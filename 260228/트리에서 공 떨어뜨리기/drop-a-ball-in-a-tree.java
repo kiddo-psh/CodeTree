@@ -5,7 +5,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int N, K;
+    static int N;
+    static long K;
     static Node[] left, right;
     static class Node {
         int n, cnt;
@@ -29,7 +30,7 @@ public class Main {
         }
 
         int answer = 0;
-        K = Integer.parseInt(br.readLine());
+        K = Long.parseLong(br.readLine());
         while (K-- > 0) {
             int cur = 1;
             while (!isLeaf(cur)) {
@@ -63,3 +64,4 @@ public class Main {
         return left[node].n == -1 && right[node].n != -1;
     }
 }
+
