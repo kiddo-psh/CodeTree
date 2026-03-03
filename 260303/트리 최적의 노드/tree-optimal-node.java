@@ -8,20 +8,21 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int N;
+	static int N, maxDist, farNode;
 	static List<Integer> leaves = new ArrayList<>();
 	static final int ROOT = 1;
 	static List<Integer>[] adj;
 	
-	static int dfs(int u, int p, int depth) {
-		int max = depth;
+	static void dfs(int u, int p, int depth) {
+		if (depth > maxDist) {
+			maxDist = depth;
+			farNode = u;
+		}
+		
 		for (int v : adj[u]) {
 			if (v==p) continue;
-			
-			int n = dfs(v, u, depth+1);
-			max = Math.max(max, n);
+			dfs(v, u, depth+1);
 		}
-		return max;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -42,13 +43,13 @@ public class Main {
 			adj[v].add(u);
 		}
 		
-		int max = dfs(ROOT, 0, 0);
-		int radius = dfs(max,0,0);		
+		dfs(ROOT, 0, 0);
+		dfs(farNode,0,0);		
 		
 		int answer = -1;
 		
-		if (radius%2==0) answer = radius/2;
-		else answer = radius/2+1;
+		if (maxDist%2==0) answer = maxDist/2;
+		else answer = maxDist/2+1;
 		
 		System.out.println(answer);
 		br.close();
