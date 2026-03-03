@@ -14,21 +14,14 @@ public class Main {
 	static List<Integer>[] adj;
 	
 	static int dfs(int u, int p, int depth) {
-		int max = -1;
-		boolean isLeaf = true;
+		int max = depth;
 		for (int v : adj[u]) {
 			if (v==p) continue;
-			isLeaf = false;
+			
 			int n = dfs(v, u, depth+1);
 			max = Math.max(max, n);
-			if (u == ROOT) {
-				leaves.add(n);
-			}
 		}
-		if (isLeaf) {
-			return depth;
-		}
-		else return max;
+		return max;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -49,13 +42,14 @@ public class Main {
 			adj[v].add(u);
 		}
 		
-		dfs(ROOT, 0, 0);
-		Collections.sort(leaves, (a,b)-> Integer.compare(b, a));
+		int max = dfs(ROOT, 0, 0);
+		int radius = dfs(max,0,0);		
 		
 		int answer = -1;
-		int max1 = leaves.get(0), max2 = leaves.size()>=2 ? leaves.get(1) : 0;
-		if ((max1+max2)%2==0) answer = (max1+max2)/2;
-		else answer = (max1+max2)/2+1;
+		
+		if (radius%2==0) answer = radius/2;
+		else answer = radius/2+1;
+		
 		System.out.println(answer);
 		br.close();
 	}
